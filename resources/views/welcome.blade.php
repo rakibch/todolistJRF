@@ -10,7 +10,7 @@
   <form action="/action_page.php">
     <div class="row">
             <div class="col-25">
-                <h2>TO DO LIST</h2>
+                <h3>TO DO LIST</h3>
             </div>
     </div>
     <div class="row">
@@ -38,29 +38,57 @@
         
     </div>
     <hr>
+    
     <div class="row">
-            <div class="col-25">
-                <label for="country">Country</label>
-            </div>
+        <div class="col-25">
+        <label for="subject">ADD TO LIST</label>
+        </div>
+        <div class="col-100">
+        <input type="text" id="subject" name="" placeholder="Add a task..."></input>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-25">
+            <label for="country">Category</label>
+        </div>
+        <div class="col-100">
             <div class="col-75">
                 <select id="country" name="country">
+                    <option value="">Choose a Category</option>
                     <option value="australia">Australia</option>
                     <option value="canada">Canada</option>
                     <option value="usa">USA</option>
                 </select>
             </div>
-    </div>
-    <div class="row">
-        <div class="col-25">
-        <label for="subject">Subject</label>
-        </div>
-        <div class="col-75">
-        <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+            <div class="col-25">
+                <input type="submit" value="ADD TODO" >
+            </div>
         </div>
     </div>
   <br>
+  <hr class="hr-class">
     <div class="row">
-        <input type="submit" value="Submit">
+        <div class="col-25">
+            <h3>CATEGORIES</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-100">
+            <div class="col-75">
+                <input type="text" id="subject" name="" placeholder="Add Category..."></input>
+            </div>
+            <div class="col-25">
+                <input type="submit" value="ADD CATEGORY" >
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <ul class="no-bullets">
+            <li><span class="category-delete">X</span>Personal</li>
+            <li><span class="category-delete">X</span>Work</li>
+        </ul>
     </div>
   </form>
 </div>

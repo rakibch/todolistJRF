@@ -21,7 +21,7 @@
   }
   
   input[type=submit] {
-    background-color: #04AA6D;
+    background-color: #6c757d;
     color: white;
     padding: 12px 20px;
     border: none;
@@ -79,6 +79,24 @@
     position:relative; 
     float: right;
     font-weight: 900;
+  }
+  .btn{
+    color: gray;
+  }
+  .hr-class{
+    border-top: 2px solid #6c757d;
+  }
+
+  .no-bullets {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .category-delete{
+    color: red;
+    font-weight: 900;
+    margin-right: 10px;
   }
 
   
