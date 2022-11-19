@@ -84,9 +84,11 @@
     </div>
     <br>
     <div class="row">
-        <ul class="no-bullets">
-            <li><span class="category-delete">X</span>Personal</li>
-            <li><span class="category-delete">X</span>Work</li>
+        <ul class="no-bullets" id="userMenu">
+            @foreach($categories as $key=>$value)
+            <li><span class="category-delete" dataid="{{$value->id}}">X</span>{{$value->categoryName}} <input class="hiddenInput" type="hidden" value="{{$value->id}}"></li>
+            
+            @endforeach
         </ul>
     </div>
 </div>
@@ -104,7 +106,6 @@
     $(".categoryAdd").click(function(e){
     e.preventDefault();
     var categoryName = $("#categoryName").val();
-    
     $.ajax({
             "_token": "{{ csrf_token() }}",
            type:'POST',
@@ -113,11 +114,46 @@
            success:function(response){
                 if(response.success)
                 {
-                    toastr.success("{!! Session::get('msg') !!}")
+                    location.reload();
+                    // toastr.success("{!! Session::get('msg') !!}");
+                }
+                else
+                {
+                    toastr.error("Failed to save category data")   
                 }
             },
         });
 
     });
+
+    // $(".category-delete").click(function(e){
+    //     var dataid = $('.hiddenInput').val();
+    //     alert(dataid);
+    // });
+
+    $("#userMenu").children('li').click( function(e) {
+        e.preventDefault();
+        var dataid = $(this).children('span').attr('dataid');
+        //alert(dataid);
+        $.ajax({
+            "_token": "{{ csrf_token() }}",
+           type:'POST',
+           url:"{{ route('deleteCategory') }}",
+           data:{categoryId:dataid},
+           success:function(response){
+                if(response.success)
+                {
+                    location.reload();
+                    // toastr.success("{!! Session::get('msg') !!}");
+                }
+                else
+                {
+                    toastr.error("Failed to delete the category")   
+                }
+            },
+        });
+    });
+
+
 </script>
 </html>

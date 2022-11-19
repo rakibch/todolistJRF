@@ -16,3 +16,4 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::post('/add-category', [HomeController::class, 'addCategory'])->name('addCategory');
+Route::post('/delete-category', [HomeController::class, 'deleteCategory'])->name('deleteCategory');
