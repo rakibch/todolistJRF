@@ -6,9 +6,9 @@
             <input type="checkbox"  name="vehicle1" value="" class="chk">
             <label for="todoTaskList" id="strikethrough" class="strikethrough">{{$value->todoTask}}</label>
         </div>
-        <span style="display:hidden;" catId="{{$value->id}}"></span>
+       
         <div class="col-25">
-            <label class="delete-button" id="categoryID" > X</label>
+            <label class="delete-button" id="categoryID" catId="{{$value->id}}"> X</label>
         </div>
         </li>
     @endforeach
@@ -17,10 +17,9 @@
 
 
 <script type="text/javascript">
-    $("#todolistId").children("li").click( function(e) {
+    $("#todolistId").children("li").children(".col-25").click( function(e) {
         e.preventDefault();
-        var dataid = $(this).children("span").attr("catId");
-       
+        var dataid = $(this).children("label").attr("catId");   
         $.ajax({
            type:'GET',
            url:"{{ route('deleteTodoListbyId') }}",
@@ -29,7 +28,7 @@
             if(response.success)
                 {
                     toastr.error("{!! Session::get('msg-delete-todo-list') !!}");
-                    setTimeout(function() {myFunc()}, 5000);
+                    setTimeout(function() {myFunc()}, 2000);
                     function myFunc() {
                         location.reload();
                     }

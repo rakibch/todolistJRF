@@ -151,7 +151,7 @@
                 if(response.success)
                 {
                     toastr.success("{!! Session::get('msg') !!}");
-                    setTimeout(function() {myFunc()}, 5000);
+                    setTimeout(function() {myFunc()}, 2000);
                     function myFunc() {
                         location.reload();
                     }
@@ -165,7 +165,7 @@
         });
 
     });
-
+    
     $("#upper-categories").children("li").click( function(e) {
         e.preventDefault();
         var dataid = $(this).children("span").attr("catId");
