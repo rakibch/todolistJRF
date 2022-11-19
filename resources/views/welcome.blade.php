@@ -14,13 +14,30 @@
             </div>
     </div>
     <div class="row">
-            <div class="col-25">
-            <label for="lname">Last Name</label>
-            </div>
-            <div class="col-75">
-            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-            </div>
+        <div class="col-100">
+        <p>Show Category : <span id="top-category">Personal | Work |  All |</span></p>
+        </div>
     </div>
+    <div class="row">
+      
+            <div class="col-75">
+                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                <label for="vehicle1"> I have a bike I have a </label>
+            </div>
+            <div class="col-25">
+                <label class="delete-button"> X</label>
+            </div>
+
+            <div class="col-75">
+                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                <label for="vehicle1"> I have a bike I have a ave a bikeI have a</label>
+            </div>
+            <div class="col-25">
+                <label class="delete-button"> X</label>
+            </div>
+        
+    </div>
+    <hr>
     <div class="row">
             <div class="col-25">
                 <label for="country">Country</label>
