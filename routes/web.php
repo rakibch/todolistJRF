@@ -19,3 +19,4 @@ Route::post('/add-category', [HomeController::class, 'addCategory'])->name('addC
 Route::post('/delete-category', [HomeController::class, 'deleteCategory'])->name('deleteCategory');
 Route::post('/add-todo-task', [HomeController::class, 'addTodoTask'])->name('addTodoTask');
 Route::get('/get-task-list-by-category', [HomeController::class, 'getTaskListbyCategory'])->name('getTaskListbyCategory');
+Route::get('/delete-todo-list', [HomeController::class, 'deleteTodoListbyId'])->name('deleteTodoListbyId');

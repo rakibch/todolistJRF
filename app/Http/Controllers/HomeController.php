@@ -61,4 +61,12 @@ class HomeController extends Controller
         }
 
     }
+
+    public function deleteTodoListbyId(Request $request)
+    {
+        $todoListId = $request->todoTaskId;
+        todoTaskList::find($todoListId)->delete();
+        Session::put('msg-delete-todo-list', 'Successfully Deleted TodoList Data');
+        return response()->json(['success'=>'Successfully Deleted TodoList Data']);
+    }
 }
