@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $categories = categories::all();
+        $categories = categories::orderBy('categoryName','asc')->get();
         return view('home')->with(['categories'=>$categories]);
     }
 
@@ -32,5 +32,17 @@ class HomeController extends Controller
         categories::find($id)->delete();
         Session::put('msg', 'Successfully Deleted Category Data');
         return response()->json(['success'=>'Successfully Deleted Category Data']);
+    }
+
+    public function addTodoTask(Request $request)
+    {
+        $todoTask = $request->todoTask;
+        $category = $request->category;
+        todoTaskList::create([
+            'categoryId' => $category,
+            'todoTask' => $todoTask,
+        ]);
+        Session::put('msg', 'Successfully Added Todo Task');
+        return response()->json(['success'=>'Successfully Added Todo Task']);
     }
 }

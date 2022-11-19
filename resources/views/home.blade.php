@@ -15,7 +15,11 @@
     </div>
     <div class="row">
         <div class="col-100">
-        <p>Show Category : <span id="top-category">Personal | Work |  All |</span></p>
+        <p>Show Category : @foreach($categories as $key=>$value)
+            <span id="top-category">{{$value->categoryName}} | </span> 
+            @endforeach
+            <span id="top-category" id="all-todo-list">All |</span>
+        </p>
         </div>
     </div>
     <div class="row">
@@ -43,7 +47,7 @@
         <label for="subject">ADD TO LIST</label>
         </div>
         <div class="col-100">
-        <input type="text" id="subject" name="" placeholder="Add a task..."></input>
+        <input type="text" id="todoTask" name="" placeholder="Add a task..."></input>
         </div>
     </div>
 
@@ -53,15 +57,15 @@
         </div>
         <div class="col-100">
             <div class="col-75">
-                <select id="country" name="country">
-                    <option value="">Choose a Category</option>
-                    <option value="australia">Australia</option>
-                    <option value="canada">Canada</option>
-                    <option value="usa">USA</option>
+                <select id="category" name="category">
+                    <option value="n/a">Choose a Category</option>
+                    @foreach($categories as $key=>$value)
+                    <option value="{{$value->id}}">{{$value->categoryName}}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="col-25">
-                <input type="submit" value="ADD TODO" >
+                <input type="submit" id="addTodo" value="ADD TODO" >
             </div>
         </div>
     </div>
@@ -87,7 +91,6 @@
         <ul class="no-bullets" id="userMenu">
             @foreach($categories as $key=>$value)
             <li><span class="category-delete" dataid="{{$value->id}}">X</span>{{$value->categoryName}} <input class="hiddenInput" type="hidden" value="{{$value->id}}"></li>
-            
             @endforeach
         </ul>
     </div>
@@ -126,11 +129,6 @@
 
     });
 
-    // $(".category-delete").click(function(e){
-    //     var dataid = $('.hiddenInput').val();
-    //     alert(dataid);
-    // });
-
     $("#userMenu").children('li').click( function(e) {
         e.preventDefault();
         var dataid = $(this).children('span').attr('dataid');
@@ -153,6 +151,35 @@
             },
         });
     });
+
+    $("#addTodo").click(function(e){
+    e.preventDefault();
+    var todoTask = $("#todoTask").val();
+    var category = $('#category').find(":selected").val();
+    $.ajax({
+            "_token": "{{ csrf_token() }}",
+           type:'POST',
+           url:"{{ route('addTodoTask') }}",
+           data:{todoTask:todoTask,category:category},
+           success:function(response){
+                if(response.success)
+                {
+                    toastr.success("{!! Session::get('msg') !!}");
+                    setTimeout(function() {myFunc()}, 5000);
+                    function myFunc() {
+                        location.reload();
+                    }
+                    
+                }
+                else
+                {
+                    toastr.error("Failed to save category data")   
+                }
+            },
+        });
+
+    });
+
 
 
 </script>
