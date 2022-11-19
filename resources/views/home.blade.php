@@ -15,31 +15,17 @@
     </div>
     <div class="row">
         <div class="col-100">
-        <p>Show Category : @foreach($categories as $key=>$value)
-            <span id="top-category">{{$value->categoryName}} | </span> 
+        <p>Show Category : &nbsp
+            <ul class="list-inline" id="upper-categories">
+            @foreach($categories as $key=>$value)
+                <li><span id="top-category" catId="{{$value->id}}">{{$value->categoryName}} |</span></li>
             @endforeach
-            <span id="top-category" id="all-todo-list">All |</span>
+                <li><span id="all-category" catId="all">All |</span></li>
+            </ul>
         </p>
         </div>
     </div>
-    <div class="row">
-            <div class="col-75">
-                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                <label for="vehicle1"> I have a bike I have a </label>
-            </div>
-            <div class="col-25">
-                <label class="delete-button"> X</label>
-            </div>
-
-            <div class="col-75">
-                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                <label for="vehicle1"> I have a bike I have a ave a bikeI have a</label>
-            </div>
-            <div class="col-25">
-                <label class="delete-button"> X</label>
-            </div>
-        
-    </div>
+    <div id="show"></div>
     <hr>
     
     <div class="row">
@@ -180,7 +166,19 @@
 
     });
 
-
+    $("#upper-categories").children("li").click( function(e) {
+        e.preventDefault();
+        var dataid = $(this).children("span").attr("catId");
+        $.ajax({
+           type:'GET',
+           url:"{{ route('getTaskListbyCategory') }}",
+           data:{categoryId:dataid},
+           success:function(response){
+            $('#show').html(response);
+            },
+        });
+    });  
 
 </script>
+
 </html>

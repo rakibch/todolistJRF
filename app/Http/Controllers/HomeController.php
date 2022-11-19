@@ -45,4 +45,20 @@ class HomeController extends Controller
         Session::put('msg', 'Successfully Added Todo Task');
         return response()->json(['success'=>'Successfully Added Todo Task']);
     }
+
+    public function getTaskListbyCategory(Request $request)
+    {
+        $categoryId = $request->categoryId;
+        if($categoryId=='all')
+        {
+            $getToDoList = todoTaskList::orderBy('todoTask','asc')->get();
+            return view('todolist.all')->with(['getToDoList' => $getToDoList]);
+        }
+        else
+        {
+            $getToDoList = todoTaskList::where('categoryId',$categoryId)->orderBy('todoTask','asc')->get();
+            return view('todolist.all')->with(['getToDoList' => $getToDoList]);
+        }
+
+    }
 }

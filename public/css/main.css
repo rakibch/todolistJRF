@@ -99,10 +99,24 @@
     margin-right: 10px;
   }
 
+  .list-inline {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+  }
   
-  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-  /* @media screen and (max-width: 600px) {
-    .col-25, .col-75, input[type=submit] {
-      width: 100%;
-      margin-top: 0;
-    } */
+  .list-inline > li {
+    display: inline-block;
+  }
+  
+  .list-inline > li:before {
+    content: "\200B"; /* 1 */
+    position: absolute; /* 2 */
+  }
+
+  .strikeThrough {
+    text-decoration:line-through
+  }
+  input[type=checkbox]:checked + label.strikethrough{
+    text-decoration: line-through;
+  }
