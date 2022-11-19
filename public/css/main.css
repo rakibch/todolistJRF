@@ -1,8 +1,10 @@
 * {
     box-sizing: border-box;
   }
+
   body{
     background-color: #012169;
+    font-family: 'Poppins', sans-serif;
   }
   
   input[type=text], select, textarea {
